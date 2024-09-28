@@ -476,7 +476,7 @@ require('lazy').setup({
       -- and language tooling communicate in a standardized fashion.
       --
       -- In general, you have a "server" which is some tool built to understand a particular
-      -- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
+      -- language (such as `gopls`, `lua_ls`, `r,ust_analyzer`, etc.). These Language Servers
       -- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
       -- processes that communicate with some "client" - in this case, Neovim!
       --
@@ -617,7 +617,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`tsserver`) will work just fine
         ts_ls = {},
         --
-
+        python = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -638,6 +638,18 @@ require('lazy').setup({
           ['rust-analyzer'] = {
             diagnostics = {
               enable = false,
+            },
+          },
+        },
+      }
+      require('lspconfig').pyright.setup {
+        cmd = { 'pyright-langserver', '--stdio' },
+        settings = {
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              diagnosticMode = 'openFilesOnly',
+              useLibraryCodeForTypes = true,
             },
           },
         },
@@ -913,6 +925,7 @@ require('lazy').setup({
         'markdown',
         'markdown_inline',
         'rust',
+        'python',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
