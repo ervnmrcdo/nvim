@@ -65,4 +65,50 @@ return {
       vim.api.nvim_set_keymap('n', '<leader>t', '<cmd>lua _term_toggle()<CR>', { noremap = true, silent = true })
     end,
   },
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    opts = {
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          show_hidden_count = true,
+          hide_dotfiles = true,
+          hide_gitignored = true,
+          hide_by_name = {
+            -- '.git',
+            -- '.DS_Store',
+            -- 'thumbs.db',
+          },
+          never_show = {},
+        },
+      },
+    },
+  },
+  { 'norcalli/nvim-colorizer.lua' },
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      local group = vim.api.nvim_create_augroup('lsp_format_on_save', { clear = false })
+      local event = 'BufWritePre' -- or "BufWritePost"
+      local async = event == 'BufWritePost'
+    end,
+  },
+  {
+    'MunifTanjim/prettier.nvim',
+    bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
+    filetypes = {
+      'css',
+      'graphql',
+      'html',
+      'javascript',
+      'javascriptreact',
+      'json',
+      'less',
+      'markdown',
+      'scss',
+      'typescript',
+      'typescriptreact',
+      'yaml',
+    },
+  },
 }
