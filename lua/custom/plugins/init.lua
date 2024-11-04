@@ -82,6 +82,10 @@ return {
           never_show = {},
         },
       },
+      window = {
+        position = 'right', -- Set the position to the right side
+        width = 30, -- You can adjust the width as needed
+      },
     },
   },
   { 'norcalli/nvim-colorizer.lua' },
