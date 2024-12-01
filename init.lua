@@ -630,6 +630,8 @@ require('lazy').setup({
             'htmlangular',
             'javascript',
             'typescript',
+            'markdown',
+            'python',
           },
           single_file_support = true,
         },
@@ -649,18 +651,17 @@ require('lazy').setup({
             'vue',
           },
         },
-        clangd = {},
-        pyright = {
-          cmd = { 'pyright-langserver', '--stdio' },
-          settings = {
-            python = {
-              analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = 'openFilesOnly',
-                useLibraryCodeForTypes = true,
+        clangd = {
+          capabilities = {
+            offsetEncoding = { 'utf-8', 'utf-16' },
+            textDocument = {
+              completion = {
+                editsNearCursor = true,
               },
             },
           },
+          cmd = { 'clangd' },
+          filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
         },
         rust_analyzer = {
           settings = {
@@ -671,6 +672,9 @@ require('lazy').setup({
             },
           },
         },
+        markdownlint = {},
+        eslint_d = {},
+        pylint = {},
         -- gopls = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -708,7 +712,12 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
+        'stylua',
+        'clang-format', -- Used to format Lua code
+        'google-java-format',
+        'prettier',
+        'prettierd',
+        'black',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -761,13 +770,48 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        c = { 'clang-format' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        markdown = { 'prettier' },
+        java = { 'google-java-format' },
+        python = { 'black' },
+        svelte = { 'prettier' },
+
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
       },
     },
+  },
+
+  { --Linter
+    'mfussenegger/nvim-lint',
+    event = {
+      'BufReadPre',
+      'BufNewFile',
+    },
+    config = function()
+      local lint = require 'lint'
+
+      lint.linters_by_ft = {
+        javascript = { 'eslint_d' },
+        typescript = { 'eslint_d' },
+        typescriptreact = { 'eslint_d' },
+        javascriptreact = { 'eslint_d' },
+        python = { 'pylint' },
+        svelte = { 'eslint_d' },
+      }
+      local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
+
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+        group = lint_augroup,
+        callback = function()
+          lint.try_lint()
+        end,
+      })
+    end,
   },
 
   { -- Autocompletion

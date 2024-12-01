@@ -113,6 +113,18 @@ return {
       'typescript',
       'typescriptreact',
       'yaml',
+      'python',
+      'lua',
     },
+  },
+  {
+    'rhysd/vim-clang-format',
+    config = function()
+      vim.g['clang_format#style_options'] = {
+        ColumnLimit = 120, -- Change this to your desired limit
+        IndentWidth = 4, -- Customize other options as needed
+        AllowShortIfStatementsOnASingleLine = 'false',
+      }
+    end,
   },
 }
