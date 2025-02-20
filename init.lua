@@ -631,7 +631,6 @@ require('lazy').setup({
             'javascript',
             'typescript',
             'markdown',
-            'python',
           },
           single_file_support = true,
         },
@@ -674,7 +673,20 @@ require('lazy').setup({
         },
         markdownlint = {},
         eslint_d = {},
-        pylint = {},
+        pyright = {
+          cmd = { 'pyright-langserver', '--stdio' },
+          filetypes = { 'python' },
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = 'openFilesOnly',
+                useLibraryCodeForTypes = true,
+              },
+            },
+          },
+        },
+
         -- gopls = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -722,6 +734,8 @@ require('lazy').setup({
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
+        ensure_installed = {},
+        automatic_installation = {},
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -958,11 +972,15 @@ require('lazy').setup({
     config = function()
       vim.cmd 'syntax enable'
       vim.cmd 'set background=dark' -- or light
-      vim.cmd 'colorscheme solarized-osaka-storm' -- Ensure this matches the theme name
+      vim.cmd 'colorscheme solarized-osaka' -- Ensure this matches the theme name
 
       require('solarized-osaka').setup {
         -- your configuration comes here
         -- or leave it empty to use the default settings
+        use_background = true,
+        light_style = true,
+        style = {},
+        plugins = {},
         transparent = true, -- Enable this to disable setting the background color
         terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
         styles = {
