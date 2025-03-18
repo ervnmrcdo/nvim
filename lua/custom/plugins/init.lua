@@ -1,3 +1,4 @@
+local ensure_installed = require 'mason-lspconfig.ensure_installed'
 -- You can add your own plugins here or in other files in this directory!
 --  I promise not to create any merge conflicts in this directory :)
 --
@@ -126,5 +127,32 @@ return {
         AllowShortIfStatementsOnASingleLine = 'false',
       }
     end,
+  },
+  {
+    'nvim-flutter/flutter-tools.nvim',
+    lazy = true,
+    opts = {
+      ensure_installed = {
+        'nvim-lua/plenary.nvim',
+        'stevearc/dressing.nvim', -- optional for vim.ui.select
+      },
+    },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim', -- optional for vim.ui.select
+    },
+    -- config = true,
+    config = function()
+      require('flutter-tools').setup {} -- use defaults
+    end,
+  },
+  {
+    'brianhuster/live-preview.nvim',
+    dependencies = {
+      -- You can choose one of the following pickers
+      'nvim-telescope/telescope.nvim',
+      'ibhagwan/fzf-lua',
+      'echasnovski/mini.pick',
+    },
   },
 }
