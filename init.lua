@@ -399,6 +399,7 @@ require('lazy').setup({
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'flutter')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -624,7 +625,6 @@ require('lazy').setup({
             'pug',
             'sass',
             'scss',
-            'svelte',
             'typescriptreact',
             'vue',
             'htlangular',
@@ -686,105 +686,10 @@ require('lazy').setup({
             },
           },
         },
-        -- tailwindcss = {
-        --   cmd = { 'tailwindcss-language-server', '--stdio' },
-        --   filetypes = {
-        --     'aspnetcorerazor',
-        --     'astro',
-        --     'astro-markdown',
-        --     'blade',
-        --     'clojure',
-        --     'django-html',
-        --     'htmldjango',
-        --     'edge',
-        --     'eelixir',
-        --     'elixir',
-        --     'ejs',
-        --     'erb',
-        --     'eruby',
-        --     'gohtml',
-        --     'gohtmltmpl',
-        --     'haml',
-        --     'handlebars',
-        --     'hbs',
-        --     'html',
-        --     'htmlangular',
-        --     'html-eex',
-        --     'heex',
-        --     'jade',
-        --     'leaf',
-        --     'liquid',
-        --     'markdown',
-        --     'mdx',
-        --     'mustache',
-        --     'njk',
-        --     'nunjucks',
-        --     'php',
-        --     'razor',
-        --     'slim',
-        --     'twig',
-        --     'css',
-        --     'less',
-        --     'postcss',
-        --     'sass',
-        --     'scss',
-        --     'stylus',
-        --     'sugarss',
-        --     'javascript',
-        --     'javascriptreact',
-        --     'reason',
-        --     'rescript',
-        --     'typescript',
-        --     'typescriptreact',
-        --     'vue',
-        --     'svelte',
-        --     'templ',
-        --   },
-        --   settings = {
-        --     {
-        --       tailwindCSS = {
-        --         classAttributes = { 'class', 'className', 'class:list', 'classList', 'ngClass' },
-        --         includeLanguages = {
-        --           eelixir = 'html-eex',
-        --           eruby = 'erb',
-        --           htmlangular = 'html',
-        --           templ = 'html',
-        --         },
-        --         lint = {
-        --           cssConflict = 'warning',
-        --           invalidApply = 'error',
-        --           invalidConfigPath = 'error',
-        --           invalidScreen = 'error',
-        --           invalidTailwindDirective = 'error',
-        --           invalidVariant = 'error',
-        --           recommendedVariantOrder = 'warning',
-        --         },
-        --         validate = true,
-        --       },
-        --     },
-        --   },
-        -- },
-        -- html = {
-        --   cmd = { 'vscode-html-language-server', '--stdio' },
-        --   filetypes = { 'html', 'templ' },
-        --   init_options = {
-        --     configurationSection = { 'html', 'css', 'javascript' },
-        --     embeddedLanguages = {
-        --       css = true,
-        --       javascript = true,
-        --     },
-        --     provideFormatter = true,
-        --   },
-        -- },
-        -- gopls = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`tsserver`) will work just fine
-
-        --
+        svelte = {
+          cmd = { 'svelteserver', '--stdio' },
+          filetypes = { 'svelte' },
+        },
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -880,7 +785,7 @@ require('lazy').setup({
         markdown = { 'prettierd' },
         java = { 'google-java-format' },
         python = { 'black' },
-        svelte = { 'prettierd' },
+        svelte = { 'svelte' },
         css = { 'prettierd' },
 
         -- Conform can also run multiple formatters sequentially
