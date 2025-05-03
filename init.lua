@@ -672,6 +672,11 @@ require('lazy').setup({
           },
         },
         markdownlint = {},
+        cssmodules_ls = {
+          cmd = { 'cssmodules-language-server' },
+          filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+          root_markers = { 'package.json' },
+        },
         eslint_d = {},
         pyright = {
           cmd = { 'pyright-langserver', '--stdio' },
