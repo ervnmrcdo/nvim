@@ -128,23 +128,46 @@ return {
     end,
   },
   {
-    'nvim-flutter/flutter-tools.nvim',
-    lazy = false,
-    opts = {
-      ensure_installed = {
-        'nvim-lua/plenary.nvim',
-        'stevearc/dressing.nvim', -- optional for vim.ui.select
-      },
-    },
+    'akinsho/flutter-tools.nvim',
+    lazy = true,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'stevearc/dressing.nvim', -- optional for vim.ui.select
     },
-    -- config = true,
-    config = function()
-      require('flutter-tools').setup {} -- use defaults
-    end,
+    config = true,
+    debugger = {
+      enabled = true,
+      register_configurations = function(_)
+        -- require("dap").configurations.dart = {}
+        -- require("dap.ext.vscode").load_launchjs()
+      end,
+    },
   },
+  -- {
+  --   'mfussenegger/nvim-dap',
+  --   dependencies = {
+  --     'nvim-neotest/nvim-nio',
+  --     'rcarriga/nvim-dap-ui',
+  --   },
+  --   event = 'VeryLazy',
+  --   config = function()
+  --     require('dapui').setup {
+  --       icons = { expanded = '▾', collapsed = '▸' },
+  --       layouts = {
+  --         {
+  --           elements = {
+  --             { id = 'scopes', size = 0.25 },
+  --             'breakpoints',
+  --             'stacks',
+  --             'watches',
+  --           },
+  --           size = 10, -- columns
+  --           position = 'bottom',
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     'brianhuster/live-preview.nvim',
     dependencies = {

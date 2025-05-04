@@ -672,10 +672,24 @@ require('lazy').setup({
           },
         },
         markdownlint = {},
-        cssmodules_ls = {
-          cmd = { 'cssmodules-language-server' },
-          filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-          root_markers = { 'package.json' },
+        cssls = {
+          cmd = { 'vscode-css-language-server', '--stdio' },
+          filetypes = { 'css', 'scss', 'less' },
+          init_options = {
+            provideFormatter = true,
+          },
+          root_markers = { 'package.json', '.git' },
+          settings = {
+            css = {
+              validate = true,
+            },
+            less = {
+              validate = true,
+            },
+            scss = {
+              validate = true,
+            },
+          },
         },
         eslint_d = {},
         pyright = {
@@ -745,6 +759,10 @@ require('lazy').setup({
             require('lspconfig')[server_name].setup(server)
           end,
         },
+      }
+
+      require('lspconfig').dartls.setup {
+        cmd = { 'dart', 'language-server', '--protocol=lsp' },
       }
     end,
   },
