@@ -84,6 +84,17 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
+vim.api.nvim_create_autocmd('BufWinLeave', {
+  pattern = '*.*',
+  command = 'mkview',
+})
+
+-- autoload view of file
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  pattern = '*',
+  command = 'silent! loadview',
+})
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
