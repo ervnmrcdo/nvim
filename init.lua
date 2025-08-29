@@ -623,6 +623,24 @@ require('lazy').setup({
         --   filetypes = { 'css', 'eruby', 'html', 'htmldjango', 'javascriptreact', 'less', 'pug', 'sass', 'scss', 'typescriptreact', 'htmlangular' },
         --   single_file_support = true,
         -- },
+
+        -- dartls = {
+        --   cmd = { 'dart', 'language-server', '--protocol=lsp' },
+        --   filetypes = { 'dart' },
+        --   init_options = {
+        --     onlyAnalyzeProjectsWithOpenFiles = true,
+        --     suggestFromUnimportedLibraries = true,
+        --     closingLabels = true,
+        --     lineLength = 100,
+        --   },
+        --   settings = {
+        --     dart = {
+        --       completeFunctionCalls = true,
+        --       showTodos = true,
+        --     },
+        --   },
+        -- },
+
         emmet_ls = {
           cmd = { 'emmet-ls', '--stdio' },
           filetypes = {
@@ -651,13 +669,15 @@ require('lazy').setup({
               {
                 name = '@vue/typescript-plugin',
                 location = '/usr/local/lib/node_modules/@vue/typescript-plugin',
-                languages = { 'javascript', 'typescript', 'vue' },
+                languages = { 'javascript', 'typescript', 'vue', 'javascriptreact', 'typescriptreact' },
               },
             },
           },
           filetypes = {
             'javascript',
             'typescript',
+            'javascriptreact',
+            'typescriptreact',
             'vue',
           },
         },
@@ -771,10 +791,6 @@ require('lazy').setup({
           end,
         },
       }
-
-      require('lspconfig').dartls.setup {
-        cmd = { 'dart', 'language-server', '--protocol=lsp' },
-      }
     end,
   },
 
@@ -815,6 +831,8 @@ require('lazy').setup({
         c = { 'clang-format' },
         javascript = { 'prettierd' },
         typescript = { 'prettierd' },
+        javascriptreact = { 'prettierd' },
+        typescriptreact = { 'prettierd' },
         html = { 'prettierd' },
         markdown = { 'prettierd' },
         java = { 'google-java-format' },
