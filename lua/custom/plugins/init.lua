@@ -177,6 +177,26 @@ return {
       'echasnovski/mini.pick',
     },
   },
+  -- {
+  --   'rcarriga/nvim-notify',
+  --   opts = {
+  --     -- Configuration options for nvim-notify
+  --     -- For example:
+  --     timeout = 2500, -- Notifications disappear after 3 seconds
+  --     stages = 'fade', -- Animation style
+  --     top_down = true, -- Notifications appear from bottom to top
+  --     max_height = function()
+  --       return math.floor(vim.opt.lines:get() * 0.75)
+  --     end,
+  --     max_width = function()
+  --       return math.floor(vim.opt.columns:get() * 0.75)
+  --     end,
+  --   },
+  --   init = function()
+  --     -- Set nvim-notify as the default notification handler
+  --     vim.notify = require 'notify'
+  --   end,
+  -- },
   {
     'folke/noice.nvim',
     event = 'VeryLazy',
@@ -192,8 +212,11 @@ return {
       'rcarriga/nvim-notify',
     },
   },
-  --
-  --
+  {
+    'mrcjkb/haskell-tools.nvim',
+    version = '^6', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
   -- {
   --   'epwalsh/obsidian.nvim',
   --   version = '*', -- recommended, use latest release instead of latest commit
