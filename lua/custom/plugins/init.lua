@@ -144,111 +144,64 @@ return {
     },
   },
   -- {
-  --   'mfussenegger/nvim-dap',
+  --   'brianhuster/live-preview.nvim',
   --   dependencies = {
-  --     'nvim-neotest/nvim-nio',
-  --     'rcarriga/nvim-dap-ui',
+  --     -- You can choose one of the following pickers
+  --     'nvim-telescope/telescope.nvim',
+  --     'ibhagwan/fzf-lua',
+  --     'echasnovski/mini.pick',
   --   },
-  --   event = 'VeryLazy',
-  --   config = function()
-  --     require('dapui').setup {
-  --       icons = { expanded = '▾', collapsed = '▸' },
-  --       layouts = {
-  --         {
-  --           elements = {
-  --             { id = 'scopes', size = 0.25 },
-  --             'breakpoints',
-  --             'stacks',
-  --             'watches',
-  --           },
-  --           size = 10, -- columns
-  --           position = 'bottom',
-  --         },
-  --       },
-  --     }
-  --   end,
   -- },
   {
-    'brianhuster/live-preview.nvim',
-    dependencies = {
-      -- You can choose one of the following pickers
-      'nvim-telescope/telescope.nvim',
-      'ibhagwan/fzf-lua',
-      'echasnovski/mini.pick',
+    'rcarriga/nvim-notify',
+    opts = {
+      -- Configuration options for nvim-notify
+      -- For example:
+      timeout = 100, -- Notifications disappear after 3 seconds
+      stages = 'fade', -- Animation style
+      top_down = true, -- Notifications appear from bottom to top
+      max_height = function()
+        return math.floor(vim.opt.lines:get() * 0.5)
+      end,
+      max_width = function()
+        return math.floor(vim.opt.columns:get() * 0.5)
+      end,
     },
+    init = function()
+      -- Set nvim-notify as the default notification handler
+      vim.notify = require 'notify'
+    end,
   },
   -- {
-  --   'rcarriga/nvim-notify',
+  --   'folke/noice.nvim',
+  --   event = 'VeryLazy',
   --   opts = {
-  --     -- Configuration options for nvim-notify
-  --     -- For example:
-  --     timeout = 2500, -- Notifications disappear after 3 seconds
-  --     stages = 'fade', -- Animation style
-  --     top_down = true, -- Notifications appear from bottom to top
-  --     max_height = function()
-  --       return math.floor(vim.opt.lines:get() * 0.75)
-  --     end,
-  --     max_width = function()
-  --       return math.floor(vim.opt.columns:get() * 0.75)
-  --     end,
+  --     -- add any options here
   --   },
-  --   init = function()
-  --     -- Set nvim-notify as the default notification handler
-  --     vim.notify = require 'notify'
-  --   end,
+  --   dependencies = {
+  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+  --     'MunifTanjim/nui.nvim',
+  --     -- OPTIONAL:
+  --     --   `nvim-notify` is only needed, if you want to use the notification view.
+  --     --   If not available, we use `mini` as the fallback
+  --     'rcarriga/nvim-notify',
+  --   },
   -- },
-  {
-    'folke/noice.nvim',
-    event = 'VeryLazy',
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      'MunifTanjim/nui.nvim',
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      'rcarriga/nvim-notify',
-    },
-  },
   {
     'mrcjkb/haskell-tools.nvim',
     version = '^6', -- Recommended
     lazy = false, -- This plugin is already lazy
   },
   -- {
-  --   'epwalsh/obsidian.nvim',
-  --   version = '*', -- recommended, use latest release instead of latest commit
-  --   lazy = true,
-  --   ft = 'markdown',
-  --   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  --   -- event = {
-  --   --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-  --   --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-  --   --   -- refer to `:h file-pattern` for more examples
-  --   --   "BufReadPre path/to/my-vault/*.md",
-  --   --   "BufNewFile path/to/my-vault/*.md",
-  --   -- },
-  --   dependencies = {
-  --     -- Required.
-  --     'nvim-lua/plenary.nvim',
-  --
-  --     -- see below for full list of optional dependencies 👇
-  --   },
+  --   'vhyrro/luarocks.nvim',
+  --   priority = 1001, -- this plugin needs to run before anything else
   --   opts = {
-  --     workspaces = {
-  --       {
-  --         name = 'personal',
-  --         path = '~/vaults/personal',
-  --       },
-  --       {
-  --         name = 'work',
-  --         path = '~/vaults/work',
-  --       },
-  --     },
-  --
-  --     -- see below for full list of options 👇
+  --     rocks = { 'magick' },
   --   },
+  -- },
+  -- {
+  --   '3rd/image.nvim',
+  --   dependencies = { 'luarocks.nvim' },
+  --   opts = {},
   -- },
 }
