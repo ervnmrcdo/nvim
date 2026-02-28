@@ -1013,30 +1013,39 @@ require('lazy').setup({
     end,
   },
   {
-    'rebelot/kanagawa.nvim',
-    lazy = false, -- plugin won't load immediately
-    -- Optional: load on specific events/commands
-    -- event = "VimEnter",    -- load on VimEnter
-    -- cmd = "Colorscheme",   -- load when :Colorscheme is called
+    'navarasu/onedark.nvim',
+    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      require('kanagawa').setup {
-        compile = false, -- recommended
-        undercurl = true,
-        commentStyle = { italic = true },
-        functionStyle = {},
-        keywordStyle = { italic = true },
-        statementStyle = { bold = true },
-        typeStyle = {},
-        transparent = false,
-        dimInactive = false,
-        terminalColors = true,
+      require('onedark').setup {
+        style = 'darker',
       }
-      vim.cmd 'colorscheme kanagawa-wave' -- apply colorscheme
-      vim.cmd 'highlight TelescopeBorder guibg=none'
-      vim.cmd 'highlight TelescopeTitle guibg=none'
+      require('onedark').load()
     end,
   },
-
+  -- {
+  --   'rebelot/kanagawa.nvim',
+  --   lazy = false, -- plugin won't load immediately
+  --   -- Optional: load on specific events/commands
+  --   -- event = "VimEnter",    -- load on VimEnter
+  --   -- cmd = "Colorscheme",   -- load when :Colorscheme is called
+  --   config = function()
+  --     require('kanagawa').setup {
+  --       compile = false, -- recommended
+  --       undercurl = true,
+  --       commentStyle = { italic = true },
+  --       functionStyle = {},
+  --       keywordStyle = { italic = true },
+  --       statementStyle = { bold = true },
+  --       typeStyle = {},
+  --       transparent = false,
+  --       dimInactive = false,
+  --       terminalColors = true,
+  --     }
+  --     vim.cmd 'colorscheme kanagawa-dragon' -- apply colorscheme
+  --     vim.cmd 'highlight TelescopeBorder guibg=none'
+  --     vim.cmd 'highlight TelescopeTitle guibg=none'
+  --   end,
+  -- },
   --
   -- {
   --   'craftzdog/solarized-osaka.nvim',
@@ -1105,7 +1114,6 @@ require('lazy').setup({
   --     vim.cmd.hi 'Comment gui=none'
   --   end,
   -- },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
