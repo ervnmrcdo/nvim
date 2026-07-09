@@ -347,7 +347,7 @@ require('lazy').setup({
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
-    branch = 'master',
+    branch = 'mastefor',
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -1012,40 +1012,40 @@ require('lazy').setup({
       }
     end,
   },
-  {
-    'navarasu/onedark.nvim',
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      require('onedark').setup {
-        style = 'deep',
-      }
-      require('onedark').load()
-    end,
-  },
   -- {
-  --   'rebelot/kanagawa.nvim',
-  --   lazy = false, -- plugin won't load immediately
-  --   -- Optional: load on specific events/commands
-  --   -- event = "VimEnter",    -- load on VimEnter
-  --   -- cmd = "Colorscheme",   -- load when :Colorscheme is called
+  --   'navarasu/onedark.nvim',
+  --   priority = 1000, -- make sure to load this before all the other start plugins
   --   config = function()
-  --     require('kanagawa').setup {
-  --       compile = false, -- recommended
-  --       undercurl = true,
-  --       commentStyle = { italic = true },
-  --       functionStyle = {},
-  --       keywordStyle = { italic = true },
-  --       statementStyle = { bold = true },
-  --       typeStyle = {},
-  --       transparent = false,
-  --       dimInactive = false,
-  --       terminalColors = true,
+  --     require('onedark').setup {
+  --       style = 'deep',
   --     }
-  --     vim.cmd 'colorscheme kanagawa-dragon' -- apply colorscheme
-  --     vim.cmd 'highlight TelescopeBorder guibg=none'
-  --     vim.cmd 'highlight TelescopeTitle guibg=none'
+  --     require('onedark').load()
   --   end,
   -- },
+  {
+    'rebelot/kanagawa.nvim',
+    lazy = false, -- plugin won't load immediately
+    -- Optional: load on specific events/commands
+    -- event = "VimEnter",    -- load on VimEnter
+    -- cmd = "Colorscheme",   -- load when :Colorscheme is called
+    config = function()
+      require('kanagawa').setup {
+        compile = false, -- recommended
+        undercurl = true,
+        commentStyle = { italic = true },
+        functionStyle = {},
+        keywordStyle = { italic = true },
+        statementStyle = { bold = true },
+        typeStyle = {},
+        transparent = false,
+        dimInactive = false,
+        terminalColors = true,
+      }
+      vim.cmd 'colorscheme kanagawa-lotus' -- apply colorscheme
+      vim.cmd 'highlight TelescopeBorder guibg=none'
+      vim.cmd 'highlight TelescopeTitle guibg=none'
+    end,
+  },
   --
   -- {
   --   'craftzdog/solarized-osaka.nvim',
