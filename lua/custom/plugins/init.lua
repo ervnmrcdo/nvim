@@ -90,14 +90,14 @@ return {
     },
   },
   { 'norcalli/nvim-colorizer.lua' },
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      local group = vim.api.nvim_create_augroup('lsp_format_on_save', { clear = false })
-      local event = 'BufWritePre' -- or "BufWritePost"
-      local async = event == 'BufWritePost'
-    end,
-  },
+  -- {
+  --   'jose-elias-alvarez/null-ls.nvim',
+  --   config = function()
+  --     local group = vim.api.nvim_create_augroup('lsp_format_on_save', { clear = false })
+  --     local event = 'BufWritePre' -- or "BufWritePost"
+  --     local async = event == 'BufWritePost'
+  --   end,
+  -- },
   {
     'MunifTanjim/prettier.nvim',
     bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
